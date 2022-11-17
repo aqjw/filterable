@@ -1,0 +1,18 @@
+{
+    "name": "aqjw/filterable",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Aqjw\\Filterable\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Anton Shever",
+            "email": "anton.shever96@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
