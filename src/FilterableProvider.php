@@ -23,6 +23,8 @@ class FilterableProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->commands([
+            Commands\CreateFilter::class
+        ]);
     }
 }

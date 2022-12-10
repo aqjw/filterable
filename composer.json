@@ -13,6 +13,13 @@
             "email": "anton.shever96@gmail.com"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aqjw\\Filterable\\FilterableProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "require": {}
 }

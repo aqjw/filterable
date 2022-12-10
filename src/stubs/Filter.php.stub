@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Filters{{ ModelName }};
+
+use Aqjw\Filterable\Filter;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
+
+class {{ ClassName }} extends Filter
+{
+    /**
+     * Get the key for the filter in the query string.
+     *
+     * @return string
+     */
+    public function key(): string
+    {
+        return '{{ FieldName }}';
+    }
+
+    /**
+     * Filter scope.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param  \Illuminate\Http\Request  $request
+
+     * @return void
+     */
+    public function handle(Builder $builder, Request $request)
+    {
+        $key = $this->key();
+        $value = $this->value($request);
+
+        /* 🪄 your logic here 🪄 */
+        $builder->where($key, $value);
+    }
+}
