@@ -16,8 +16,17 @@ trait HasFilters
      */
     public function scopeFilters(Builder $builder, array $filters = [])
     {
+        $request = request();
+
         foreach ($filters as $filter) {
-            $builder->where($filter);
+            if (is_callable($filter)) {
+                $builder->where($filter);
+            } else if (is_string($filter)) {
+                $instance = new $filter;
+                if ($instance->isActive($request)) {
+                    $instance->handle($builder, $request);
+                }
+            }
         }
     }
 }

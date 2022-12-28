@@ -2,6 +2,7 @@
 
 namespace Aqjw\Filterable\Commands;
 
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
@@ -15,7 +16,7 @@ class CreateFilter extends Command
      */
     protected $signature = 'filter:create
                             {name : The filter name}
-                            {field : The field name that is passed in the request}
+                            {--field= : The field name that is passed in the request}
                             {--model= : The name of the model for which the filter is intended}';
 
     /**
@@ -93,7 +94,7 @@ class CreateFilter extends Command
         return [
             'ModelName' => $this->getModelName('\\'),
             'ClassName' => $this->argument('name'),
-            'FieldName' => $this->argument('field'),
+            'FieldName' => $this->getFieldName(),
         ];
     }
 
@@ -141,9 +142,10 @@ class CreateFilter extends Command
      * Get the model name if the option is passed.
      *
      * @param string $prefix
+     * 
      * @return string
      */
-    public function getModelName(string $prefix = '\\'): string
+    public function getModelName(string $prefix = ''): string
     {
         $model = $this->option('model');
         if (!$model) {
@@ -151,6 +153,27 @@ class CreateFilter extends Command
         }
 
         return $prefix . $model;
+    }
+
+    /**
+     * Get the field name.
+     *
+     * @return string
+     */
+    public function getFieldName(): string
+    {
+        if ($field = $this->option('field')) {
+            return $field;
+        }
+
+        $filterName = $this->argument('name');
+        $field = Str::snake($filterName);
+
+        if (str_starts_with($field, 'by_')) {
+            $field = str_replace('by_', '', $field);
+        }
+
+        return $field;
     }
 
     /**

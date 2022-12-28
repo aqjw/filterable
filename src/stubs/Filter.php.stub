@@ -23,7 +23,7 @@ class {{ ClassName }} extends Filter
      *
      * @param \Illuminate\Database\Eloquent\Builder $builder
      * @param  \Illuminate\Http\Request  $request
-
+     *
      * @return void
      */
     public function handle(Builder $builder, Request $request)
@@ -31,7 +31,7 @@ class {{ ClassName }} extends Filter
         $key = $this->key();
         $value = $this->value($request);
 
-        /* 🪄 your logic here 🪄 */
+        /* 🪄 your magic here 🪄 */
         $builder->where($key, $value);
     }
 }
