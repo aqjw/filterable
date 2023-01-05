@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filters{{ ModelName }};
+namespace App\Filters{{ GroupName }};
 
 use Aqjw\Filterable\Filter;
 use Illuminate\Http\Request;

@@ -17,7 +17,7 @@ class CreateFilter extends Command
     protected $signature = 'filter:create
                             {name : The filter name}
                             {--field= : The field name that is passed in the request}
-                            {--model= : The name of the model for which the filter is intended}';
+                            {--group= : The group name}';
 
     /**
      * The console command description.
@@ -92,7 +92,7 @@ class CreateFilter extends Command
     public function getStubVariables(): array
     {
         return [
-            'ModelName' => $this->getModelName('\\'),
+            'GroupName' => $this->getGroupName('\\'),
             'ClassName' => $this->argument('name'),
             'FieldName' => $this->getFieldName(),
         ];
@@ -135,24 +135,24 @@ class CreateFilter extends Command
      */
     public function getSourceFilePath(): string
     {
-        return base_path('App/Filters') . $this->getModelName('/') . '/' . $this->argument('name') . '.php';
+        return base_path('App/Filters') . $this->getGroupName('/') . '/' . $this->argument('name') . '.php';
     }
 
     /**
-     * Get the model name if the option is passed.
+     * Get the group name if the option is passed.
      *
      * @param string $prefix
      * 
      * @return string
      */
-    public function getModelName(string $prefix = ''): string
+    public function getGroupName(string $prefix = ''): string
     {
-        $model = $this->option('model');
-        if (!$model) {
+        $group = $this->option('group');
+        if (!$group) {
             return '';
         }
 
-        return $prefix . $model;
+        return $prefix . $group;
     }
 
     /**

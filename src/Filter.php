@@ -12,6 +12,7 @@ abstract class Filter
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $builder
      * @param  \Illuminate\Http\Request  $request
+     * 
      * @return void
      */
     public abstract function handle(Builder $builder, Request $request);
@@ -20,6 +21,7 @@ abstract class Filter
      * Determine if the filter should run for the given request.
      *
      * @param  \Illuminate\Http\Request  $request
+     * 
      * @return bool
      */
     public function isActive(Request $request)
@@ -41,6 +43,7 @@ abstract class Filter
      * Get the value for the filter from the request.
      *
      * @param  \Illuminate\Http\Request  $request
+     * 
      * @return mixed
      */
     public function value(Request $request)
