@@ -10,12 +10,12 @@ abstract class Filter
     /**
      * Apply the filter to the given query.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param mixed $value
      * 
      * @return void
      */
-    public abstract function handle(Builder $builder, Request $request);
+    public abstract function apply(Builder $query, mixed $value);
 
     /**
      * Determine if the filter should run for the given request.

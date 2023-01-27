@@ -14,7 +14,7 @@ class CreateFilter extends Command
      *
      * @var string
      */
-    protected $signature = 'filter:create
+    protected $signature = 'filter:make
                             {name : The filter name}
                             {--field= : The field name that is passed in the request}
                             {--group= : The group name}';
@@ -58,7 +58,7 @@ class CreateFilter extends Command
         $this->makeDirectory(dirname($path));
 
         $contents = $this->getSourceFile();
-        $filterName = $this->argument('name');
+        $filterName = $this->getNamespace() . '\\' . $this->argument('name');
 
         // blue style
         $style = new OutputFormatterStyle('blue');
@@ -92,7 +92,7 @@ class CreateFilter extends Command
     public function getStubVariables(): array
     {
         return [
-            'GroupName' => $this->getGroupName('\\'),
+            'Namespace' => $this->getNamespace(),
             'ClassName' => $this->argument('name'),
             'FieldName' => $this->getFieldName(),
         ];
@@ -136,6 +136,16 @@ class CreateFilter extends Command
     public function getSourceFilePath(): string
     {
         return base_path('App/Filters') . $this->getGroupName('/') . '/' . $this->argument('name') . '.php';
+    }
+
+    /**
+     * Get the filter namespace
+     *
+     * @return string
+     */
+    public function getNamespace(): string
+    {
+        return 'App\\Filters' . $this->getGroupName('\\');
     }
 
     /**

@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Filters{{ GroupName }};
+namespace {{ Namespace }};
 
 use Aqjw\Filterable\Filter;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 
 class {{ ClassName }} extends Filter
 {
     /**
-     * Get the key for the filter in the query string.
+     * Get the key for the filter.
      *
      * @return string
      */
@@ -19,19 +17,18 @@ class {{ ClassName }} extends Filter
     }
 
     /**
-     * Filter scope.
+     * Apply the filter to the given query.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param  \Illuminate\Http\Request  $request
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param mixed $value
+     * 
      * @return void
      */
-    public function handle(Builder $builder, Request $request)
+    public function apply($query, $value): void
     {
         $key = $this->key();
-        $value = $this->value($request);
 
         /* 🪄 your magic here 🪄 */
-        $builder->where($key, $value);
+        $query->where($key, $value);
     }
 }
