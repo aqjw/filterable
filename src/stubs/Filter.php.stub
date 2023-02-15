@@ -26,9 +26,7 @@ class {{ ClassName }} extends Filter
      */
     public function apply($query, $value): void
     {
-        $key = $this->key();
-
-        /* 🪄 your magic here 🪄 */
-        $query->where($key, $value);
+        /* 🪄 add your magic here 🪄 */
+        $query->where('{{ FieldName }}', $value);
     }
 }

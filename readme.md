@@ -122,7 +122,7 @@ class ByCategory extends Filter
         return 'category';
     }
 
-    public function isActive($value)
+    public function isActive($request)
     {
         // always force the filter to be applied,
         //  even if 'category' is not present in the request.

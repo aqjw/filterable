@@ -53,26 +53,34 @@ class CreateFilter extends Command
      */
     public function handle(): int
     {
+        // Get the path for the new filter
         $path = $this->getSourceFilePath();
 
+        // Ensure the directory exists
         $this->makeDirectory(dirname($path));
 
+        // Get the contents of the new filter
         $contents = $this->getSourceFile();
+
+        // Get the full namespace for the new filter
         $filterName = $this->getNamespace() . '\\' . $this->argument('name');
 
-        // blue style
+        // Set the output color for the filter name to blue
         $style = new OutputFormatterStyle('blue');
         $this->output->getFormatter()->setStyle('blue', $style);
 
+        // If the filter file doesn't exist, create it and display a success message
         if (!$this->files->exists($path)) {
             $this->files->put($path, $contents);
             $this->info("Filter <blue>{$filterName}</blue> created.");
             return Command::SUCCESS;
         }
 
-        $this->warn("Filter <blue>{$filterName}</blue> already exits.");
+        // If the filter file already exists, display a warning message
+        $this->warn("Filter <blue>{$filterName}</blue> already exists.");
         return Command::FAILURE;
     }
+
 
     /**
      * Return the stub file path
@@ -112,11 +120,12 @@ class CreateFilter extends Command
     /**
      * Replace the stub variables(key) with the desire value
      *
-     * @param $stub
+     * @param string $stub
      * @param array $stubVariables
+     * 
      * @return string
      */
-    public function getStubContents($stub, $stubVariables = []): string
+    public function getStubContents(string $stub, array $stubVariables = []): string
     {
         $contents = file_get_contents($stub);
 
@@ -125,7 +134,6 @@ class CreateFilter extends Command
         }
 
         return $contents;
-
     }
 
     /**
@@ -172,16 +180,15 @@ class CreateFilter extends Command
      */
     public function getFieldName(): string
     {
-        if ($field = $this->option('field')) {
+        // check if the 'field' option is specified
+        $field = $this->option('field');
+        if ($field !== null) {
             return $field;
         }
 
+        // otherwise, generate the field name based on the filter name
         $filterName = $this->argument('name');
-        $field = Str::snake($filterName);
-
-        if (str_starts_with($field, 'by_')) {
-            $field = str_replace('by_', '', $field);
-        }
+        $field = Str::snake(str_replace('by_', '', $filterName));
 
         return $field;
     }

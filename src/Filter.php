@@ -2,6 +2,7 @@
 
 namespace Aqjw\Filterable;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -30,13 +31,19 @@ abstract class Filter
     }
 
     /**
-     * Get the key for the filter in the query string.
+     * Get the key for the filter.
      *
      * @return string
      */
     public function key(): string
     {
-        return '';
+        // use the class name as the default filter key
+        $key = Str::snake(class_basename($this));
+
+        // remove 'by_' prefix from the key, if it exists
+        $key = Str::replaceFirst('by_', '', $key);
+
+        return $key;
     }
 
     /**
