@@ -1,7 +1,16 @@
 {
     "name": "aqjw/filterable",
+    "description": "The `Filterable` package is designed for Laravel 8.x+ and provides tools for creating and managing filters for Eloquent models. It makes it easy to scale filters and apply them to filter records.",
+    "keywords": [
+        "laravel",
+        "filter",
+        "filter records"
+    ],
     "type": "library",
     "license": "MIT",
+    "require": {
+        "php": "^8.1"
+    },
     "autoload": {
         "psr-4": {
             "Aqjw\\Filterable\\": "src/"
@@ -20,6 +29,14 @@
             ]
         }
     },
-    "minimum-stability": "dev",
-    "require": {}
+    "config": {
+        "sort-packages": true
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aqjw/filterable.git"
+    },
+    "version": "1.0.0",
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
