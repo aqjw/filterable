@@ -1,5 +1,9 @@
 
 # Filterable 📝  
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/aqjw/filterable.svg?style=flat-square)](https://packagist.org/packages/aqjw/filterable)
+[![Total Downloads](https://img.shields.io/packagist/dt/aqjw/filterable.svg?style=flat-square)](https://packagist.org/packages/aqjw/filterable)
+
 The `Filterable` package is designed for Laravel 8.x+ and provides tools for creating and managing filters for Eloquent models.
 It makes it easy to scale filters and apply them to filter records.
 
@@ -149,7 +153,7 @@ In this example, the `ByCategory` filter will always be applied, even if the `ca
 
 ## License
 
-The `Filterable` package is open-sourced software licensed under the MIT License. Please see the `License File` for more information.
+The `Filterable` package is open-sourced software licensed under the MIT License. Please see the [License File](/LICENSE) for more information.
 
 ## Contributing
 Contributions are welcome! If you would like to contribute to this project, please follow these steps:
