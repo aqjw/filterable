@@ -188,9 +188,7 @@ class CreateFilter extends Command
 
         // otherwise, generate the field name based on the filter name
         $filterName = $this->argument('name');
-        $field = Str::snake(str_replace('by_', '', $filterName));
-
-        return $field;
+        return str_replace('by_', '', Str::snake($filterName));
     }
 
     /**
