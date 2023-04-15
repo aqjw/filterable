@@ -33,20 +33,20 @@ class Product
 ## Usage
 
 ### Create a filter
-To create a new filter, use the Artisan `filter:make` command:
+To create a new filter, use the Artisan `make:filter` command:
 
 ```bash
-php artisan filter:make ByPrice
+php artisan make:filter ByPrice
 ```
 
 You can also specify the column to be filtered:
 ```bash
-php artisan filter:make ByPrice --column=retail_price
+php artisan make:filter ByPrice --column=retail_price
 ```
 
 In addition, you can specify a group for the filter:
 ```bash
-php artisan filter:make ByCategory --group=Product
+php artisan make:filter ByCategory --group=Product
 ```
 The filter will then be created in the following group folder:
 `\App\Filters\Product\ByCategory::class`

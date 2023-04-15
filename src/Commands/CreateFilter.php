@@ -14,7 +14,7 @@ class CreateFilter extends Command
      *
      * @var string
      */
-    protected $signature = 'filter:make
+    protected $signature = 'make:filter
                             {name : The filter name}
                             {--field= : The field name that is passed in the request}
                             {--group= : The group name}';
@@ -29,14 +29,14 @@ class CreateFilter extends Command
 
     /**
      * Filesystem instance
-     * 
+     *
      * @var Filesystem
      */
     protected $files;
 
     /**
      * Create a new command instance.
-     * 
+     *
      * @param Filesystem $files
      */
     public function __construct(Filesystem $files)
@@ -122,7 +122,7 @@ class CreateFilter extends Command
      *
      * @param string $stub
      * @param array $stubVariables
-     * 
+     *
      * @return string
      */
     public function getStubContents(string $stub, array $stubVariables = []): string
@@ -160,7 +160,7 @@ class CreateFilter extends Command
      * Get the group name if the option is passed.
      *
      * @param string $prefix
-     * 
+     *
      * @return string
      */
     public function getGroupName(string $prefix = ''): string
